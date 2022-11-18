@@ -18,7 +18,7 @@ defmodule LiveViewTodos.Todos do
 
   """
   def list_todos do
-    Repo.all(Todo)
+    Repo.all(Todo) |> Repo.preload(:tasks)
   end
 
   @doc """
@@ -35,7 +35,7 @@ defmodule LiveViewTodos.Todos do
       ** (Ecto.NoResultsError)
 
   """
-  def get_todo!(id), do: Repo.get!(Todo, id)
+  def get_todo!(id), do: Repo.get!(Todo, id) |> Repo.preload(:tasks)
 
   @doc """
   Creates a todo.

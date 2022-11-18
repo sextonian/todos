@@ -19,4 +19,14 @@ defmodule LiveViewTodos.TodosFixtures do
 
     todo
   end
+
+  def build_task(attrs \\ %{}) do
+    attrs
+    |> Enum.into(%{
+      name: "something",
+      percent: 0
+    })
+
+    # |> LiveViewTodos.Todos.Task.changeset()
+  end
 end

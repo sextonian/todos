@@ -12,9 +12,13 @@ defmodule LiveViewTodos.Todos.Task do
     timestamps()
   end
 
+  def changeset(attrs) do
+    changeset(%__MODULE__{}, attrs)
+  end
+
   @doc false
-  def changeset(todo, attrs) do
-    todo
+  def changeset(task, attrs) do
+    task
     |> cast(attrs, [:name, :percent])
     |> validate_required([:name, :percent])
   end
