@@ -12,7 +12,8 @@ defmodule LiveViewTodos.TodosFixtures do
       attrs
       |> Enum.into(%{
         done: true,
-        title: "some title"
+        title: "some title",
+        tasks: []
       })
       |> LiveViewTodos.Todos.create_todo()
 

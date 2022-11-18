@@ -57,5 +57,10 @@ defmodule LiveViewTodos.TodosTest do
       todo = todo_fixture()
       assert %Ecto.Changeset{} = Todos.change_todo(todo)
     end
+
+    test "create_todo/1 saves todo with tasks" do
+      todo = todo_fixture(tasks: [])
+      assert %Ecto.Changeset{data: %Todo{tasks: []}} = Todos.change_todo(todo)
+    end
   end
 end
