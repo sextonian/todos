@@ -7,7 +7,7 @@ defmodule LiveViewTodos.Todos.Todo do
   schema "todos" do
     field :done, :boolean, default: false
     field :title, :string
-    has_many :tasks, Todos.Task
+    has_many :tasks, Todos.Task, on_replace: :delete
 
     timestamps()
   end

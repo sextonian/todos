@@ -5,8 +5,6 @@ defmodule LiveViewTodos.TodosTest do
 
   describe "todos" do
     alias LiveViewTodos.Todos.Todo
-    alias LiveViewTodos.Todos.Task
-
     import LiveViewTodos.TodosFixtures
 
     @invalid_attrs %{done: nil, title: nil}
@@ -59,16 +57,5 @@ defmodule LiveViewTodos.TodosTest do
       assert %Ecto.Changeset{} = Todos.change_todo(todo)
     end
 
-    test "change_todo/1 saves todo with empty task list" do
-      todo = todo_fixture(tasks: [])
-      assert %Ecto.Changeset{data: %Todo{tasks: []}} = Todos.change_todo(todo)
-    end
-
-    test "change_todo/1 saves todo with tasks" do
-      todo = todo_fixture(tasks: [build_task(name: "pumpkin thing")])
-
-      assert %{data: %Todo{tasks: [%Task{name: "pumpkin thing", percent: 0}]}} =
-               Todos.change_todo(todo)
-    end
   end
 end

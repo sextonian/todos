@@ -18,7 +18,7 @@ defmodule LiveViewTodosWeb.Router do
     pipe_through :browser
 
     # live "/", TodoLive.Index, :index
-    live "", TodoLive.Index, :index
+    live "/", TodoLive.Index, :index
     live "/new", TodoLive.Index, :new
     live "/:id/edit", TodoLive.Index, :edit
 
