@@ -20,7 +20,7 @@ defmodule LiveViewTodos.TasksTest do
                Todos.change_todo(todo)
     end
 
-    test "delete tasks" do
+    test "delete tasks and persist" do
       todo = todo_fixture(tasks: [build_task(name: "pumpkin thing")])
       params = %{
         "tasks" => []
@@ -30,7 +30,7 @@ defmodule LiveViewTodos.TasksTest do
       assert {:ok, %Todo{tasks: []}} = todo
     end
 
-    test "add tasks" do
+    test "add tasks and persist" do
       todo = todo_fixture(tasks: [build_task(name: "pumpkin thing")])
       params = %{
         "tasks" => [
@@ -43,6 +43,18 @@ defmodule LiveViewTodos.TasksTest do
       todo = Todos.update_todo(todo, params)
       {:ok, %Todo{tasks: tasks}} = todo
       assert 3 = length(tasks)
+    end
+
+    test "replace tasks with other tasks from form data" do
+      todo = todo_fixture(tasks: [build_task(name: "pumpkin thing")])
+      params = %{"tasks" => [
+        %{"name" => "thing", "percent" => "20"},
+        %{"name" => "another", "percent" => "80"}
+      ]}
+      todo = Todos.update_todo(todo, params)
+
+      {:ok, %Todo{tasks: tasks}} = todo
+      assert 2 = length(tasks)
     end
   end
 end
